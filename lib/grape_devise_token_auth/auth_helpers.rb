@@ -1,5 +1,7 @@
 module GrapeDeviseTokenAuth
   module AuthHelpers
+    include ::Devise::Controllers::SignInOut
+    
     def self.included(_base)
       Devise.mappings.keys.each do |mapping|
         define_method("current_#{mapping}") do
