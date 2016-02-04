@@ -1,8 +1,11 @@
 module GrapeDeviseTokenAuth
   module AuthHelpers
     include ::Devise::Controllers::SignInOut
-    
+  
     def self.included(_base)
+      
+      delegate :session, to: :request
+    
       Devise.mappings.keys.each do |mapping|
         define_method("current_#{mapping}") do
           warden.user(mapping)
